@@ -15,20 +15,20 @@ class MovieHorizontal extends StatelessWidget {
     final _screenSize = MediaQuery.of(context).size;
     
     return Container(
-      height: _screenSize.height * 0.2,
+      height: _screenSize.height * 0.22,
       child: PageView(
         pageSnapping: false,
         controller: PageController(
           initialPage: 1,
           viewportFraction: 0.3,
         ),
-        children: _cards(_screenSize),
+        children: _cards(context),
       ),
     );
   }
   
 
-  List<Widget> _cards(_screenSize) {
+  List<Widget> _cards(context) {
 
     return movies.map( ( movie ) {
 
@@ -51,9 +51,7 @@ class MovieHorizontal extends StatelessWidget {
             Text(
               movie.title,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 7.0
-              )
+              style: Theme.of(context).textTheme.bodySmall
             )
           ],
         ),
