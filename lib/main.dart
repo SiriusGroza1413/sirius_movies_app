@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:sirius_movies_app/src/pages/home_page.dart';
+
 
 void main() {
   runApp(MainApp());
@@ -24,7 +24,7 @@ class MainApp extends StatelessWidget {
         )
       ),
       debugShowCheckedModeBanner: false,
-      title: 'Peliculas',
+      title: 'GMA',
       initialRoute: '/',
       routes: {
         '/' :  ( BuildContext contex ) => HomePage(),
