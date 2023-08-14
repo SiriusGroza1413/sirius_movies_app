@@ -23,6 +23,7 @@ class MoviesProvider {
     final decodedData = json.decode(resp.body);
     final peliculas = Movies.fromJsonList(decodedData['results']); //1) llama al "constructor" de la clase Movie pasandole el json devuelto por el get
 
+    //print(peliculas.items[0].title);
     return peliculas.items;
   }
 
