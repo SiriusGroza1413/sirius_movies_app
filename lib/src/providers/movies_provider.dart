@@ -11,6 +11,7 @@ class MoviesProvider {
   String _language = 'es-MX';
 
 
+
   Future<List<MovieDetail>> getInTheaters() async {
 
     final url = Uri.http(_url, '/3/movie/now_playing', {
@@ -22,8 +23,24 @@ class MoviesProvider {
     final decodedData = json.decode(resp.body);
     final peliculas = Movies.fromJsonList(decodedData['results']); //1) llama al "constructor" de la clase Movie pasandole el json devuelto por el get
 
-    
     return peliculas.items;
+  }
+
+
+
+  Future<List<MovieDetail>> getPopulars() async {
+
+    final url = Uri.http(_url, '/3/movie/popular', {
+      'api_key': _apiKey,
+      'language': _language,
+    });
+
+    final resp = await http.get(url);
+    final decodedData = json.decode(resp.body);
+    final populars = Movies.fromJsonList(decodedData['results']); 
+
+    //print(populars.items[0].title);
+    return populars.items;
   }
 }
 
