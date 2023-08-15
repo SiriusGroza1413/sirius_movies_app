@@ -26,7 +26,6 @@ class MovieHorizontal extends StatelessWidget {
 
     _pageController.addListener( () {
       if(_pageController.position.pixels >= _pageController.position.maxScrollExtent - 200){
-        print('Cargar siguientes peliculas');
         siguientePagina();
       }
     });
