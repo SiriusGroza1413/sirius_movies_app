@@ -9,10 +9,12 @@ import '../models/movie_model.dart';
 
 class HomePage extends StatelessWidget {
   
+  final peliculasProvider = MoviesProvider();
 
   @override
   Widget build(BuildContext context) {
 
+    peliculasProvider.getPopulares();
     final _textTheme = Theme.of(context).textTheme.bodyMedium;
 
     return Scaffold(
@@ -41,7 +43,7 @@ class HomePage extends StatelessWidget {
 
     return FutureBuilder(
       
-      future: moviesprovider.getInTheaters(),
+      future: peliculasProvider.getInTheaters(),
       builder: (BuildContext context, AsyncSnapshot<List<MovieDetail>> snapshot){
 
         if ( snapshot.hasData ) {
@@ -74,12 +76,15 @@ class HomePage extends StatelessWidget {
           SizedBox(
             height: 5.0,
           ),
-          FutureBuilder(
-            future: moviesprovider.getPopulars(),
+
+          StreamBuilder(
+            stream: peliculasProvider.popularesStream,
             builder: (BuildContext context, AsyncSnapshot<List<MovieDetail>> snapshot) {
-              
               if(snapshot.hasData){
-                return MovieHorizontal(movies: snapshot.data!);
+                return MovieHorizontal(
+                  movies: snapshot.data!,
+                  siguientePagina: peliculasProvider.getPopulares,
+                );
               } else {
                 return CircularProgressIndicator();
               }    

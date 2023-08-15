@@ -5,23 +5,38 @@ import 'package:sirius_movies_app/src/models/movie_model.dart';
 class MovieHorizontal extends StatelessWidget {
   
   final List<MovieDetail> movies;
+  final Function siguientePagina;
 
-  MovieHorizontal({required this.movies});
+
+  MovieHorizontal({required this.movies, required this.siguientePagina});
+
+
+  final _pageController = PageController(
+    initialPage: 1,
+    viewportFraction: 0.3,
+  );
 
 
   @override
   Widget build(BuildContext context) {
 
+
     final _screenSize = MediaQuery.of(context).size;
+
+
+    _pageController.addListener( () {
+      if(_pageController.position.pixels >= _pageController.position.maxScrollExtent - 200){
+        print('Cargar siguientes peliculas');
+        siguientePagina();
+      }
+    });
+
     
     return Container(
       height: _screenSize.height * 0.22,
       child: PageView(
         pageSnapping: false,
-        controller: PageController(
-          initialPage: 1,
-          viewportFraction: 0.3,
-        ),
+        controller: _pageController,
         children: _cards(context),
       ),
     );

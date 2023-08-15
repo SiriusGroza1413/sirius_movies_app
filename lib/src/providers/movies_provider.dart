@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:sirius_movies_app/src/models/movie_model.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +10,23 @@ class MoviesProvider {
   String _apiKey = '018f9406bac3a7ddd16d9cbfd33426b2';
   String _url = 'api.themoviedb.org';
   String _language = 'es-MX';
+
+
+  int _popularesPage = 0;
+  List<MovieDetail> _populares = [];
+
+
+  final _popularesStreamController = StreamController<List<MovieDetail>>.broadcast();
+
+
+  Function(List<MovieDetail>) get popularesSink => _popularesStreamController.sink.add;
+  Stream<List<MovieDetail>> get popularesStream => _popularesStreamController.stream;
+
+
+  void disposeStreams(){
+    _popularesStreamController.close();
+  }
+
 
 
   Future<List<MovieDetail>> _procesarRespuesta(Uri url) async {
@@ -30,14 +48,26 @@ class MoviesProvider {
   }
 
 
-  Future<List<MovieDetail>> getPopulars() async {
+
+  Future<List<MovieDetail>> getPopulares() async {
+
+    _popularesPage++;
+
     final url = Uri.http(_url, '/3/movie/popular', {
       'api_key': _apiKey,
       'language': _language,
+      'page': _popularesPage.toString()
     });
-    return await _procesarRespuesta(url);
+
+
+    final resp = await _procesarRespuesta(url);
+
+    _populares.addAll(resp);
+    popularesSink(_populares);
+
+    return resp;
   }
 }
 
 
-final moviesprovider = MoviesProvider();
+//final moviesprovider = MoviesProvider();
