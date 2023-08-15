@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:sirius_movies_app/src/pages/home_page.dart';
+import 'package:sirius_movies_app/src/pages/movie_detail.dart';
 
 
 void main() {
@@ -28,6 +29,7 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/' :  ( BuildContext contex ) => HomePage(),
+        'detail' : (BuildContext context) => MovieDetailPage(),
       }
     );
   }

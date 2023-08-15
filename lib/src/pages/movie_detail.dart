@@ -9,7 +9,9 @@ class MovieDetailPage extends StatelessWidget {
   @override build(BuildContext context) {
 
     return Scaffold(
-      body: CustomScrollView(),
+      body: Center(
+        child: Text('Detalle'),
+      )
     );
   }
 }
