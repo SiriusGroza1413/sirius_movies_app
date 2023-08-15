@@ -33,20 +33,18 @@ class MovieHorizontal extends StatelessWidget {
     
     return Container(
       height: _screenSize.height * 0.22,
-      child: PageView(
+      child: PageView.builder(
         pageSnapping: false,
         controller: _pageController,
-        children: _cards(context),
+        itemCount: movies.length,
+        itemBuilder: (context, i) => _card(context, movies[i]) ,
       ),
     );
   }
-  
 
-  List<Widget> _cards(context) {
 
-    return movies.map( ( movie ) {
-
-      return Container(
+  Widget _card(BuildContext context, MovieDetail movie){
+    return Container(
         margin: EdgeInsets.only(right: 15.0),
         child: Column(
           children: [
@@ -70,7 +68,38 @@ class MovieHorizontal extends StatelessWidget {
           ],
         ),
       );
-    }).toList();
-
   }
+  
+
+  // List<Widget> _cards(context) {
+
+  //   return movies.map( ( movie ) {
+
+  //     return Container(
+  //       margin: EdgeInsets.only(right: 15.0),
+  //       child: Column(
+  //         children: [
+  //           ClipRRect(
+  //             borderRadius: BorderRadius.circular(20.0),
+  //             child: FadeInImage(
+  //               image: NetworkImage(movie.getPosterImg()),
+  //               placeholder: AssetImage('assets/gif/loading.gif'),
+  //               fit: BoxFit.cover,
+  //               height: 160.0,
+  //             ),
+  //           ),
+  //           // SizedBox(
+  //           //   height: 3.0,
+  //           // ),
+  //           Text(
+  //             movie.title,
+  //             overflow: TextOverflow.ellipsis,
+  //             style: Theme.of(context).textTheme.bodySmall
+  //           )
+  //         ],
+  //       ),
+  //     );
+  //   }).toList();
+
+  // }
 }
