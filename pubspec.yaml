@@ -22,3 +22,4 @@ flutter:
   assets:
    - assets/img/no-image.jpg
    - assets/gif/loading.gif
+   - assets/img/bg.jpg
