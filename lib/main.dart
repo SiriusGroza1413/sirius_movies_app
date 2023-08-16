@@ -14,15 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          color: Colors.indigoAccent,
-          titleTextStyle: TextStyle(
-            fontStyle: FontStyle.italic,
-            fontSize: 25.0 
-          ),
-          shadowColor: Colors.blue
-        )
+      theme: ThemeData.dark(
       ),
       debugShowCheckedModeBanner: false,
       title: 'GMA',

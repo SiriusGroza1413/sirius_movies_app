@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigoAccent,
         title: Text("Guillermito's Movies App"),
         actions: [
           IconButton(
