@@ -43,6 +43,7 @@ class MovieDetailPage extends StatelessWidget {
     
     return SliverAppBar(
       elevation: 4.0,
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.indigoAccent,
       expandedHeight: 300.0,
       floating: true,
