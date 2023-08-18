@@ -48,7 +48,7 @@ class Actors {
     });
   }
 
-}
+
 
 
   getPhoto(){
