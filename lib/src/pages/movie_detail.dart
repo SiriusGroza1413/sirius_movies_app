@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:sirius_movies_app/src/models/actors_model.dart';
 import 'package:sirius_movies_app/src/models/movie_model.dart';
+
+import 'package:sirius_movies_app/src/providers/movies_provider.dart';
 
 
 class MovieDetailPage extends StatelessWidget {
@@ -24,7 +27,8 @@ class MovieDetailPage extends StatelessWidget {
                   child: Column(
                     children: [
                       _posterTitle(movie, context),
-                      _description(movie, context)
+                      _description(movie, context),
+                      _casting(movie)
                     ]
                   )
                 ),
@@ -145,6 +149,41 @@ class MovieDetailPage extends StatelessWidget {
         textAlign: TextAlign.start,
         style: Theme.of(context).textTheme.bodyMedium,
       )
+    );
+  }
+
+  
+  _casting(MovieDetail movie) {
+
+    final movieProvider = MoviesProvider();
+
+    return FutureBuilder(
+      future: movieProvider.getCast(movie.id.toString()),
+      builder: (BuildContext context, AsyncSnapshot<List<Actors>> snapshot){
+
+        if(snapshot.hasData){
+          return _createCastPageView(snapshot.data!);
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
+  }
+  
+  _createCastPageView(List<Actors> actors) {
+    return SizedBox(
+      height: 200.0,
+      child: PageView.builder(
+        pageSnapping: false,
+        controller:  PageController(
+          viewportFraction: 0.3,
+          initialPage: 1,
+        ),
+        itemCount: actors.length,
+        itemBuilder: (context, i) => Text(actors[i].name),
+      ),
     );
   }
 
