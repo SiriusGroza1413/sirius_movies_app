@@ -33,6 +33,7 @@ class MovieDetail {
   late bool adult;
   late String overview;
   late String releaseDate;
+
   late String uniqueId;
 
   MovieDetail({
@@ -50,6 +51,7 @@ class MovieDetail {
     required this.adult,
     required this.overview,
     required this.releaseDate,
+
     //required this.uniqueId
   });
 
