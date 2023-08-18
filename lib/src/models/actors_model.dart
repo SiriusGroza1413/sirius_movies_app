@@ -22,6 +22,9 @@ class Actors {
   });
 
 
+  List<Actors> actors = [];
+
+
 
   Actors.fromJsonMap(Map<String, dynamic> json){
     castId = json['cast_id'];
@@ -33,6 +36,20 @@ class Actors {
     order = json['order'];
     profilePath = json['profile_path'];
   }
+
+
+  Actors.fromJsonList( List<dynamic> jsonList  ){
+
+    if ( jsonList == null ) return;
+
+    jsonList.forEach( (item) {
+      final actor = Actors.fromJsonMap(item);
+      actors.add(actor);
+    });
+  }
+
+}
+
 
   getPhoto(){
     if(profilePath == null){
