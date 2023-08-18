@@ -174,7 +174,7 @@ class MovieDetailPage extends StatelessWidget {
   
   _createCastPageView(List<Actors> actors) {
     return SizedBox(
-      height: 200.0,
+      height: 240.0,
       child: PageView.builder(
         pageSnapping: false,
         controller:  PageController(
@@ -182,10 +182,34 @@ class MovieDetailPage extends StatelessWidget {
           initialPage: 1,
         ),
         itemCount: actors.length,
-        itemBuilder: (context, i) => Text(actors[i].name),
+        itemBuilder: (context, i) => _actorCard(actors[i]),
       ),
     );
   }
 
+
+  _actorCard(Actors actor){
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 7.0),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: FadeInImage(
+              image: NetworkImage(actor.getPhoto()),
+              placeholder: AssetImage('assets/gif/loading.gif'),
+              height: 150.0,
+              fit: BoxFit.cover
+            ),
+          ),
+          SizedBox(height: 15.0),
+          Text(
+            actor.name,
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
+    );
+  }
 
 }

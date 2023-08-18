@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
       title: 'GMA',
       initialRoute: '/',
       routes: {
-        '/' :  ( BuildContext contex ) => HomePage(),
+        '/' :  ( BuildContext context ) => HomePage(),
         'detail' : (BuildContext context) => MovieDetailPage(),
       }
     );
