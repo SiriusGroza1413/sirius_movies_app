@@ -34,7 +34,7 @@ class Actors {
     id = json['id'];
     name = json['name'];
     order = json['order'];
-    profilePath = json['profile_path'];
+    profilePath = json['profile_path'] ?? '';
   }
 
 
