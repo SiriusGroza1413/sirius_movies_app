@@ -63,7 +63,7 @@ class MovieDetail {
     voteAverage      = json['vote_average'] / 1;
     title            = json['title'];
     popularity       = json['popularity'] / 1;
-    posterPath       = json['poster_path'];
+    posterPath       = json['poster_path'] ?? '';
     originalLanguage = json['original_language'];
     originalTitle    = json['original_title'];
     genreIds         = json['genre_ids'].cast<int>();
@@ -75,18 +75,18 @@ class MovieDetail {
   }
 
   getPosterImg() {
-
-    if ( posterPath == null ) {
-      return 'https://cdn11.bigcommerce.com/s-auu4kfi2d9/stencil/59512910-bb6d-0136-46ec-71c445b85d45/e/933395a0-cb1b-0135-a812-525400970412/icons/icon-no-image.svg';
+    if (posterPath.isEmpty) {
+      //print('posterPath: $posterPath');
+      return 'https://st4.depositphotos.com/14953852/22772/v/450/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg';
     } else {
       return 'https://image.tmdb.org/t/p/w500/$posterPath';
     }
   }
 
    getBackgroundImg() {
-
-    if ( posterPath == null ) {
-      return 'https://cdn11.bigcommerce.com/s-auu4kfi2d9/stencil/59512910-bb6d-0136-46ec-71c445b85d45/e/933395a0-cb1b-0135-a812-525400970412/icons/icon-no-image.svg';
+    if ( backdropPath.isEmpty) {
+      //print('posterPath: $backdropPath');
+      return 'https://st4.depositphotos.com/14953852/22772/v/450/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg';
     } else {
       return 'https://image.tmdb.org/t/p/w500/$backdropPath';
     }
