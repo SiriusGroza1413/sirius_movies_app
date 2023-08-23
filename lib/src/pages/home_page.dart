@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:sirius_movies_app/src/providers/movies_provider.dart';
+import 'package:sirius_movies_app/src/search/search_delegate.dart';
 import 'package:sirius_movies_app/src/widgets/card_swiper_widget.dart';
 import 'package:sirius_movies_app/src/widgets/movie_horizontal.dart';
 
@@ -23,9 +24,14 @@ class HomePage extends StatelessWidget {
         title: Text("Guillermito's Movies App"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                context: context, 
+                delegate: DataSearch()
+              );
+            },
             icon: Icon(Icons.search)
-            )
+          )
         ],
       ),
       body: Container(
